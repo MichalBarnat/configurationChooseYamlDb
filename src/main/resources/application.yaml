@@ -1,0 +1,37 @@
+server:
+  port: 8082
+
+app:
+  env: prod
+  configuration:
+    source: database
+    parameters:
+      defaultPageSize:
+        key: DEFAULT_PAGE_SIZE
+        value: 10
+      isApiEnabled:
+        key: IS_API_ENABLED
+        value: 1
+      isWorkingDay:
+        key: IS_WORKING_DAY
+        value: 0
+      ownerName:
+        key: OWNER_NAME
+        value: MICHAŁ BARNAT
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mydb
+    driverClassName: org.postgresql.Driver
+    username: admin
+    password: changeme
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  liquibase:
+    change-log: classpath:liquibase-changelog.xml
+    enabled: true
+    drop-first: true
